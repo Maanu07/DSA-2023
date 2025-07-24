@@ -78,6 +78,34 @@ class DoublyLinkedList {
     secondLastNode.next = null; // set second last node next to null
   }
 
+  reverse() {
+    // Empty or single-node list, no need to reverse
+    if (!this.head || !this.head.next) {
+      return this.head;
+    }
+
+    // O(N) time
+
+    let current = this.head;
+    let temp = null; // for swap we will need a temp variable
+
+    // run loop till last node
+    while (current !== null) {
+      // swap next and prev
+      temp = current.prev;
+      current.prev = current.next;
+      current.next = temp;
+
+      current = current.prev;
+    }
+
+    // after loop, temp will point to the previous node (which becomes the new head)
+    if (temp !== null) {
+      this.head = temp.prev;
+    }
+
+    return this.head;
+  }
   traverse() {
     let head = this.head;
     while (head) {
@@ -96,4 +124,7 @@ linkedList.deleteNodeFromTail(); //  10 <=> 20 <=> 30
 linkedList.addNodeAsHead(40); // 40 <=> 10 <=> 20 <=> 30
 linkedList.addNodeAsHead(50); // 50 <=> 40 <=> 10 <=> 20 <=> 30
 linkedList.deleteNodeFromHead(); // 40 <=> 10 <=> 20 <=> 30
+linkedList.traverse();
+linkedList.reverse();
+console.log("--------------");
 linkedList.traverse();
