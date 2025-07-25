@@ -86,6 +86,7 @@ class DoublyLinkedList {
 
     // O(N) time
 
+    // 2 pointer require
     let current = this.head;
     let temp = null; // for swap we will need a temp variable
 

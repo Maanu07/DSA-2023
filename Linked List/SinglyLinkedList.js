@@ -83,6 +83,25 @@ class SinglyLinkedList {
     return false;
   }
 
+  reverse() {
+    // O(N) time ( Optimal )
+
+    // O(2N) time (Brute force ) + O(N) space
+
+    // require 3 pointer
+    let curr = this.head;
+    let next = null;
+    let prev = null;
+    while (curr) {
+      next = curr.next; // store next pointer with next node
+      curr.next = prev; // update current node next to prev node
+      prev = curr; // update prev pointer with current node
+      curr = next; // update curr pointer with next node
+    }
+
+    this.head = prev;
+  }
+
   traverse() {
     let head = this.head;
     while (head) {
@@ -107,3 +126,8 @@ console.log(
 console.log(
   `Checking if 30 exists in the linked list ${linkedList1.checkIfPresent(30)}`
 );
+linkedList1.reverse();
+linkedList1.traverse();
+console.log("-------------------------");
+linkedList1.reverseWithRecursion();
+linkedList1.traverse();
